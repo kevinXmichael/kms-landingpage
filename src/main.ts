@@ -12,6 +12,9 @@ if (imprintGDPRClickableArea) {
 		const imprintGDPR = document.getElementById('imprint-gdpr')
 		if (imprintGDPR) {
 			imprintGDPR.className = 'text-justify my-xl' // Override 'hidden' class
+			imprintGDPR.scrollIntoView({
+				behavior: 'smooth'
+			})
 		}
 	})
 }
