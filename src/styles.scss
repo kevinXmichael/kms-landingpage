@@ -1,0 +1,133 @@
+:root {
+	font-size: 18px;
+	line-height: 1.5rem;
+	color: #f6f6f6;
+	background-color: #000000;
+
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	margin-block-start: 0;
+	margin-block-end: 0;
+	line-height: 1.3rem;
+
+	font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	@media screen and (min-width: 30rem) {
+		font-size: 22px;
+	}
+}
+
+body {
+	@extend .opacity-fadein;
+	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+		env(safe-area-inset-left);
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 1.5rem;
+	line-height: 1.6rem;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 1.25rem;
+	line-height: 1.35rem;
+}
+
+address {
+	font-style: normal;
+}
+
+.social-icons {
+	@apply flex flex-row items-center;
+	a {
+		&:not(:last-child) {
+			margin-right: 1.25rem;
+		}
+	}
+}
+
+.social-icon {
+	@apply w-1.5rem;
+}
+
+.tag {
+	@apply p-xs rounded-md text-center;
+	@extend .std-hover;
+	@extend .std-hover--scale;
+	@extend .pressable;
+}
+
+// Thanks to: https://codepen.io/mburridge/pen/gOMqWZK
+.fancy-background {
+	@apply relative w-full;
+	background: linear-gradient(135deg, #1e1e24 10%, #050505 60%);
+	$offset: -0.4rem;
+
+	&::before,
+	&::after {
+		@apply inline-block absolute;
+		width: 103%;
+		height: 59%;
+		z-index: -1;
+		content: '';
+		filter: blur(1.25rem);
+	}
+
+	&::before {
+		left: $offset;
+		top: $offset;
+		background: linear-gradient(90deg, hsl(28, 85%, 62%) 35%, hsl(210, 84%, 62%) 65%);
+	}
+
+	&::after {
+		right: $offset;
+		bottom: $offset;
+		background: linear-gradient(90deg, hsl(340, 80%, 55%) 35%, hsl(264, 80%, 50%) 65%);
+	}
+}
+
+$std-scale-factor: 1.075;
+$std-shrink-factor: 0.99;
+$std-transition-duration: 0.2s;
+
+.std-hover {
+	@media (hover) {
+		&:hover {
+			outline: 0;
+			transition: $std-transition-duration;
+			cursor: pointer;
+		}
+	}
+
+	&--scale {
+		transition: $std-transition-duration;
+
+		&:hover {
+			transition: $std-transition-duration;
+			transform: scale($std-scale-factor);
+		}
+	}
+}
+
+.pressable {
+	transition: $std-transition-duration;
+
+	&:active {
+		transform: scale($std-shrink-factor) !important;
+	}
+}
+
+.opacity-fadein {
+	animation: opacity-fadein 1s ease-in-out;
+}
+
+@keyframes opacity-fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 100;
+	}
+}
